@@ -1,3 +1,3 @@
-import { helloWorld } from './modules/helloWorld.js'
+import { startServer } from './modules/server.js'
 
-helloWorld()
+startServer()
