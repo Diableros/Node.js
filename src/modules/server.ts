@@ -40,7 +40,6 @@ export const server = http.createServer((request, response) => {
 
     if (url.search.length > 0) {
       response.statusCode = 500
-      response.write('')
       response.end()
 
       return
