@@ -53,7 +53,9 @@ export const server = http.createServer((request, response) => {
   }
 })
 
-export const startServer = () =>
-  server.listen(PORT, () =>
-    console.log(`Server was started on ${BASE_URL}:${PORT}`),
-  )
+export const startServer = (url?: string, port?: string) => {
+  if (url && port)
+    server.listen(Number(port), () =>
+      console.log(`Server was started on ${url}:${port}`),
+    )
+}
