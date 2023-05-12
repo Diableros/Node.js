@@ -1,3 +1,7 @@
-import { helloWorld } from './modules/helloWorld.js'
+import * as dotenv from 'dotenv'
+import { startServer } from './modules/server.js'
 
-helloWorld()
+dotenv.config()
+
+startServer(process.env.HOST, process.env.PORT)
+
