@@ -1,12 +1,15 @@
+import * as dotenv from 'dotenv'
 import * as http from 'node:http'
 import { getUsers } from './getUsers.js'
 
-const BASE_URL = 'http://127.0.0.1'
-const PORT = 3003
+dotenv.config()
+
+const baseURL = process.env.ENV_HOST
+const port = process.env.ENV_port
 
 export const server = http.createServer((request, response) => {
   if (request.url) {
-    const url = new URL(request.url, BASE_URL)
+    const url = new URL(request.url, baseURL)
 
     if (url.searchParams.has('hello')) {
       const helloParam = url.searchParams.get('hello')
@@ -53,9 +56,7 @@ export const server = http.createServer((request, response) => {
   }
 })
 
-export const startServer = (url?: string, port?: string) => {
-  if (url && port)
-    server.listen(Number(port), () =>
-      console.log(`Server was started on ${url}:${port}`),
-    )
-}
+export const startServer = () =>
+  server.listen(Number(port), () =>
+    console.log(`Server was started on ${baseURL}:${port}`),
+  )
