@@ -3,9 +3,8 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
-import userRouter from './routes/users.js'
-import loggerOne from './middlewares/loggerOne.js'
-import loggerTwo from './middlewares/loggerTwo.js'
+import routers from './routes/routers.js'
+import logOrigin from './middlewares/logOrigin.js'
 
 dotenv.config()
 
@@ -28,10 +27,9 @@ const startServer = () => {
   })
 }
 app.use(cors())
-app.use(loggerOne)
-app.use(loggerTwo)
+app.use(logOrigin)
 app.use(bodyParser.json())
-app.use(userRouter)
+app.use(routers)
 
 const connectDb = connectionDb()
 

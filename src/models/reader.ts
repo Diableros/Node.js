@@ -1,21 +1,21 @@
 import { Schema, model } from 'mongoose'
 
-const userSchema = new Schema({
+const readerSchema = new Schema({
   name: {
     type: String,
     required: true,
-    minLenght: 2,
+    minLength: 2,
+  },
+  surname: {
+    type: String,
+    required: true,
+    minLength: 2,
   },
   username: {
     type: String,
     required: true,
-    minLenght: 2,
-  },
-  email: {
-    type: String,
-    required: true,
-    minLenght: 2,
+    minLength: 5,
   },
 })
 
-export default model('user', userSchema)
+export default model('reader', readerSchema)
