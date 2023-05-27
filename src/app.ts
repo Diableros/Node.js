@@ -1,11 +1,9 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
-// import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 import routers from './routes/routers.js'
 import logOrigin from './middlewares/logOrigin.js'
-// import { Error } from 'mongoose'
 import connectDB from './db/connectDB.js'
 
 dotenv.config()

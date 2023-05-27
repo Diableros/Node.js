@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose'
+import mongoose, { Schema, model } from 'mongoose'
 
 const readerSchema = new Schema({
   name: {
@@ -16,6 +16,7 @@ const readerSchema = new Schema({
     required: true,
     minLength: 5,
   },
+  books: [{ type: mongoose.Schema.Types.ObjectId, ref: 'books' }],
 })
 
 export default model('reader', readerSchema)

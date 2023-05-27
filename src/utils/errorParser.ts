@@ -2,7 +2,7 @@ import { Response } from 'express'
 import { Error } from 'mongoose'
 
 const errorParser = (error: Error, res: Response) => {
-  console.error(error.message)
+  console.log(error.message)
 
   if (error.name === 'CastError') {
     res.status(404).send(error.message)

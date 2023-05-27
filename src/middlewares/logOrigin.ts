@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 
 const logOrigin = (req: Request, res: Response, next: NextFunction) => {
-  console.log(`Origin URL is: ${req.originalUrl}`)
+  console.log(`Request ${req.method} on ${req.hostname}${req.originalUrl}`)
   next()
 }
 

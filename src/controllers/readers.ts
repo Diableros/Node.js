@@ -23,7 +23,7 @@ export const createReader = async (req: Request, res: Response) => {
     .then((reader) => {
       res.status(201).send(reader)
     })
-    .catch((error: Error) => res.status(500).send(error.message))
+    .catch((error: Error) => errorParser(error, res))
 }
 
 export const updateReader = async (req: Request, res: Response) => {
@@ -36,6 +36,30 @@ export const updateReader = async (req: Request, res: Response) => {
 export const deleteReader = async (req: Request, res: Response) => {
   const { reader_id } = req.params
   return Reader.findByIdAndDelete(reader_id)
+    .then((reader) => res.status(200).send(reader))
+    .catch((error: Error) => errorParser(error, res))
+}
+
+export const borrowBook = async (req: Request, res: Response) => {
+  const { reader_id, book_id } = req.params
+
+  return Reader.findByIdAndUpdate(
+    reader_id,
+    { $addToSet: { books: book_id } },
+    { new: true },
+  )
+    .then((reader) => res.status(200).send(reader))
+    .catch((error: Error) => errorParser(error, res))
+}
+
+export const returnBook = async (req: Request, res: Response) => {
+  const { reader_id, book_id } = req.params
+
+  return Reader.findByIdAndUpdate(
+    reader_id,
+    { $pull: { books: book_id } },
+    { new: true },
+  )
     .then((reader) => res.status(200).send(reader))
     .catch((error: Error) => errorParser(error, res))
 }
